@@ -82,6 +82,11 @@ function Industry(props) {
 }
 
 class App extends Component {
+   componentDidMount() {
+      // constlocalStorage.setItem('a', 1);
+      // document.cookie = "'a':'1'"
+      // navigator.cookieEnabled 
+   }
   render() {
     return (
       <Router>
