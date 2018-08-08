@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import styled, { injectGlobal } from 'styled-components';
+import Pusher from 'pusher-js';
+import Tester from './Tester';
 
 injectGlobal`
    body {
@@ -10,6 +12,16 @@ injectGlobal`
       color: #333;
    }
 `;
+
+const socket = new Pusher('507f085c62c12711175d', {
+   cluster: 'mt1',
+   encrypted: true
+ });
+
+const channel = socket.subscribe('my-channel');
+channel.bind('my-event', function(data) {
+   console.log(data);
+});
 
 const color = '#5b40b3';
 
@@ -95,6 +107,7 @@ class App extends Component {
                   </Main>
                </div>
             )}} />
+            <Tester />
          </div>
       </Router>
     );
